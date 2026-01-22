@@ -6,7 +6,7 @@
     <title>Book Store</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://kit.fontawesome.com/682077b5fc.js" crossorigin="anonymous"></script>
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
 </head>
 <body class="menu--open">
     <section id="landing">
@@ -53,10 +53,7 @@
             </figure>
           </div>
         </header>
-    </section>
-
-    <main>
-        <section id="highlights">
+            
            <div class="container">
             <div class="row">
                <h2 class="section__title">
@@ -95,24 +92,7 @@
                   </div>  
                 </div>
             </div>
-           </div> 
-        </section>
-
-       <section id="featured">
-           <div class="container">
-            <div class="row">
-            <div class="books__header">
-               <h2 class="section__title books__header--title">
-                Why choose <span class="purple">Library</span>
-              </h2>
-              <select id="filter" onchange="filterBooks(event)">
-                <option value="" disabled selected>Sort</option>
-                <option value="LOW_TO_HIGH">Price, Low to High</option>
-                <option value="HIGH_TO_LOW">Price, High to Low</option>
-                <option value="RATING">Rating</option>
-              </select>
-              <div class="books">
-                  <section id="featured">
+           </div>  
            <div class="container">
             <div class="row">
               <div class="books__header">
@@ -126,7 +106,7 @@
                 <option value="RATING">Rating</option>
               </select>
               </div>
-              <div class="books">
+            <div class="books" id="featured__books">
                 <div class="book">
                     <figure class="book__img--wrapper">
                         <img class="book__img" src="./assets/crack the coding interview.png" alt="">
@@ -199,18 +179,16 @@
                         <span class="book__price--normal">$49.95</span> $14.95
                     </div>
                 </div>
-              </div>
             </div>
-           </div> 
-        </section>
-
-       <section id="latest">
+           </div>
+          </section>
+         <main>
            <div class="container">
             <div class="row">
               <h2>
                 Latest <span class="purple">Books</span>
               </h2>
-              <div class="books">
+               <div class="books">
                 <div class="book">
                     <figure class="book__img--wrapper">
                         <img class="book__img" src="./assets/book-1.jpeg" alt="">
@@ -354,23 +332,14 @@
                     <div class="book__price">
                         <span class="book__price--normal">$49.95</span> $14.95
                     </div>
-                </div>
+                 </div>
+               </div>
               </div>
+             </div>
             </div>
-           </div> 
-        </section>
+        </div> 
+   
 
-        <section id="explore">
-            <div class="container">
-                <div class="row row__column">
-                    <h2>Explore more <span class="purple">Books</span></h2>
-                    <a href="#featured">
-                       <button class="btn">Browes books</button> 
-                    </a>
-                </div>
-                <figure class="explore__img--wrapper"></figure>
-            </div>
-        </section>
     </main>
 
     <footer>

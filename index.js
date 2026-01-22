@@ -1,12 +1,12 @@
 function openMenu() {
-    document.body.classList +=" menu--open"
+    document.body.classList.add("menu--open");
 }
 function closeMenu() {
-    document.body.classList.remove('menu--open')
+    document.body.classList.remove("menu--open")
 }
 
 function renderBooks(filter) {
-    const booksWrapper = document.querySelector(".books");
+    const booksWrapper = document.querySelector("#featured__books");
 
     const books = getBooks();
  
@@ -22,20 +22,23 @@ function renderBooks(filter) {
 
     const booksHTML = books
     .map((book) => {
-          return `<div class="book">
-        <figure class="book__img--wrapper">
-            <img class="book__img" src="${book.url}" alt="">
-        </figure>
-        <div class="book__title">
-            ${book.title}
-        </div>
-        <div class="book__ratings">
-          ${ratingsHTML(book.rating)}
-        <div class="book__price">
-           ${priceHTML(book.originalPrice, book.salePrice)}
-            <span class=>$${book.originalPrice.toFixed(2)}</span> 
-        </div>
-    </div>`;
+          return `
+<div class="book">
+  <figure class="book__img--wrapper">
+    <img class="book__img" src="${book.url}" alt="">
+  </figure>
+  <div class="book__title">
+    ${book.title}
+  </div>
+  <div class="book__ratings">
+    ${ratingsHTML(book.rating)}
+  </div>
+  <div class="book__price">
+    ${priceHTML(book.originalPrice, book.salePrice)}
+  </div>
+</div>
+`;
+
     })
     .join("");
 
@@ -66,9 +69,8 @@ function filterBooks(event) {
   }    
 
 
-setTimeout(() => {
-  renderBooks();
-})
+renderBooks();
+
 // FAKE DATA
 function getBooks() {
   return [
