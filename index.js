@@ -5,10 +5,17 @@ function closeMenu() {
     document.body.classList.remove("menu--open")
 }
 
-function renderBooks(filter) {
-    const booksWrapper = document.querySelector("#featured__books");
+let books; 
 
-    const books = getBooks();
+async function renderBooks(filter) {
+  const booksWrapper = document.querySelector(".books");
+
+    if (!books) {
+      books = await getBooks();
+    }
+    
+    document.body.classList.remove('books__loading')
+    
  
     if (filter === 'LOW_TO_HIGH') {
       books.sort((a, b) => (a.salePrice || a.originalPrice) - (b.salePrice || b.originalPrice));
@@ -17,8 +24,17 @@ function renderBooks(filter) {
       books.sort((a, b) => (b.salePrice || b.originalPrice) - (a.salePrice || a.originalPrice));  
     }
     else if (filter === "RATING") {
-       books.sort((a, b) => b.rating - a.rating); 
-    }
+      books.sort((a, b) => {
+    if (b.rating !== a.rating) return b.rating - a.rating;
+
+    const priceA = a.salePrice ?? a.originalPrice;
+    const priceB = b.salePrice ?? b.originalPrice;
+    if (priceA !== priceB) return priceA - priceB;
+
+    return a.title.localeCompare(b.title);
+  });
+}
+
 
     const booksHTML = books
     .map((book) => {
@@ -73,7 +89,9 @@ renderBooks();
 
 // FAKE DATA
 function getBooks() {
-  return [
+ return new Promise((resolve) => {
+     setTimeout(() => {
+      resolve([
     {
       id: 1,
       title: "Crack the Coding Interview",
@@ -162,5 +180,7 @@ function getBooks() {
       salePrice: null,
       rating: 4.5,
     },
-  ];
+  ]);
+ }, 1000);
+ });
 }
